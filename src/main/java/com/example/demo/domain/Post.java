@@ -1,11 +1,14 @@
 package com.example.demo.domain;
 
 import com.example.demo.dto.AuthorDTO;
+import com.example.demo.dto.CommentDTO;
 import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -30,6 +33,8 @@ public class Post implements Serializable {
         this.body = body;
         this.author = author;
     }
+
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -70,6 +75,13 @@ public class Post implements Serializable {
     public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -83,4 +95,6 @@ public class Post implements Serializable {
     public int hashCode() {
         return Objects.hash(id, date, title, body);
     }
+
+
 }
